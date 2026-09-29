@@ -22,15 +22,32 @@ A ULA recebe dois operandos de 8 bits (`A` e `B`) e um seletor de 3 bits (`Sel`)
 | `110` | Botão Inf. + Superior| NOT Lógico (~A) |
 | `111` | Todos os três | XOR Lógico (A ^ B) |
 
-## Ferramentas e Simulação
-*   **Design & Síntese:** AMD/Xilinx Vivado (Mapeamento via `Nexys-A7-100T-TP2.xdc`).
-*   **Simulação:** Mentor/Siemens QuestaSim.
+## Síntese e Utilização de Recursos (Vivado)
+O circuito provou ser altamente otimizado na arquitetura estrutural. O mapeamento físico utilizou a seguinte interface:
+*   **16 Switches (Chaves):** Entradas `A[7:0]` e `B[7:0]`.
+*   **3 Push Buttons:** Seletor `Sel[2:0]`.
+*   **8 LEDs:** Saída `result[7:0]`.
 
-O testbench (`tb_ULA.sv`) foi construído com a abordagem **self-checking**. Ele testa automaticamente todas as 524.288 combinações possíveis das entradas A, B e Sel, comparando a saída do hardware com o resultado matemático esperado. 
+**Relatório de Utilização (Utilization Report):**
+*   **Slice LUTs:** 70 (<1%)
+*   **Bonded IOBs:** 27
+*   **Flip-Flops / BRAMs:** 0 (Comprova a natureza puramente combinacional da ULA).
 
-**Para reproduzir a simulação:**
-1. Abra o QuestaSim / ModelSim.
-2. Navegue até o diretório do projeto.
-3. Execute o script de automação no terminal (Transcript):
-   ```tcl
-   do sim.do
+## Como Executar
+
+### 1. Simulação (QuestaSim / ModelSim)
+O testbench (`tb_ULA.sv`) utiliza a abordagem **self-checking**, testando automaticamente as 524.288 combinações possíveis.
+1. Abra o QuestaSim e navegue até o diretório do projeto.
+2. Execute o script no terminal (Transcript): `do sim.do`
+*Nota: O projeto atingiu **100% de Statement Coverage**.*
+
+### 2. Implementação na FPGA (Vivado)
+1. Crie um novo projeto no **Vivado** selecionando a linguagem `SystemVerilog`.
+2. Em *Add Sources*, adicione os 5 ficheiros de hardware (`.sv`). Não adicione o testbench.
+3. Em *Add Constraints*, adicione o ficheiro `Nexys-A7-100T-TP2.xdc`.
+4. Em *Default Part*, pesquise e selecione o chip **xc7a100tcsg324-1**.
+5. No menu lateral, clique em **Run Synthesis** para compilar o projeto.
+6. Clique em **Generate Bitstream** para criar o binário da placa.
+7. Conecte a placa Nexys A7 ao computador por USB e ligue-a.
+8. Clique em **Open Hardware Manager** > **Open Target** > **Auto Connect**.
+9. Clique em **Program Device** para transferir a ULA para o hardware físico e teste nos botões.
