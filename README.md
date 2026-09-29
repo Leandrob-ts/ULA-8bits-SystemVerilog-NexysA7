@@ -36,7 +36,7 @@ O circuito provou ser altamente otimizado na arquitetura estrutural. O mapeament
 ## Como Executar
 
 ### 1. Simulação (QuestaSim / ModelSim)
-O testbench (`tb_ULA.sv`) utiliza a abordagem **self-checking**, testando automaticamente as 524.288 combinações possíveis.
+O testbench (`TB.sv`) utiliza a abordagem **self-checking**, testando automaticamente as 524.288 combinações possíveis.
 1. Abra o QuestaSim e navegue até o diretório do projeto.
 2. Execute o script no terminal (Transcript): `do sim.do`
 *Nota: O projeto atingiu **100% de Statement Coverage**.*
