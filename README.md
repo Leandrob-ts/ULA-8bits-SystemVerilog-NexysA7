@@ -26,7 +26,7 @@ A ULA recebe dois operandos de 8 bits (`A` e `B`) e um seletor de 3 bits (`Sel`)
 *   **Design & Síntese:** AMD/Xilinx Vivado (Mapeamento via `Nexys-A7-100T-TP2.xdc`).
 *   **Simulação:** Mentor/Siemens QuestaSim.
 
-O testbench (`TB.sv`) foi construído com a abordagem **self-checking**. Ele testa automaticamente todas as 524.288 combinações possíveis das entradas A, B e Sel, comparando a saída do hardware com o resultado matemático esperado. 
+O testbench (`tb_ULA.sv`) foi construído com a abordagem **self-checking**. Ele testa automaticamente todas as 524.288 combinações possíveis das entradas A, B e Sel, comparando a saída do hardware com o resultado matemático esperado. 
 
 **Para reproduzir a simulação:**
 1. Abra o QuestaSim / ModelSim.
