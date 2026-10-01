@@ -12,3 +12,9 @@ run -all
 
 # Imprime o relatório detalhado de cobertura na tela
 coverage report -detail
+
+# Salva o banco de dados de cobertura (recomendado para consultas futuras)
+coverage save relatorio_cobertura.ucdb
+
+# Gera o relatório de cobertura em formato HTML na pasta "cobertura_html"
+coverage report -html -htmldir cobertura_html
